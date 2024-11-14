@@ -14,6 +14,7 @@ const fibs = (num) => {
 
 // Recursive solution
 const fibsRec = (num) => {
+  console.log('This was printed recursively');
   if (num <= 0) return [];
   if (num == 1) return [0];
   if (num == 2) return [0, 1];
@@ -23,6 +24,6 @@ const fibsRec = (num) => {
   return [...fibArray, nextFib];
 };
 
-num = 8;
+const num = 8;
 console.log('Fibonacci sequence via iteration:', fibs(num));
 console.log('Fibonacci array via recursion:', fibsRec(num));
