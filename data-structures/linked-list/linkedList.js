@@ -100,6 +100,56 @@ export default class LinkedList {
     return null;
   }
 
+  insertAt(value, index) {
+    if (index < 0 || index > this.size()) {
+      return;
+    }
+
+    if (index === 0) {
+      this.prepend(value);
+    } else if (index === this.size()) {
+      this.append(value);
+    } else {
+      let curr = this.head;
+      let previous;
+      let newNode = new Node(value);
+
+      for (let i = 0; i < index; i++) {
+        previous = curr;
+        curr = curr.nextNode;
+      }
+      previous.nextNode = newNode;
+      newNode.nextNode = curr;
+      this.length++;
+    }
+  }
+
+  removeAt(index) {
+    if (index < 0 || index > this.size()) {
+      return;
+    }
+
+    if (index === 0) {
+      this.head = this.head.nextNode;
+    } else if (index === this.size()) {
+      this.tail = null;
+    } else {
+      let curr = this.head;
+      let previous;
+
+      for (let i = 0; i < index; i++) {
+        previous = curr;
+        curr = curr.nextNode;
+      }
+      previous.nextNode = curr.nextNode;
+
+      if (curr === this.tail) {
+        this.tail = previous;
+      }
+    }
+    this.length--;
+  }
+
   toString() {
     let curr = this.head;
     let str = '';
