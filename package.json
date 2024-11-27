@@ -1,0 +1,6 @@
+{
+  "type": "module",
+  "name": "odin-cs",
+  "version": "1.0.0",
+  "main": "./data-structures-linked-list/main.js"
+}
