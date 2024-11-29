@@ -1,4 +1,14 @@
-import Node from './node.js';
+class Node {
+  constructor(key = null, value = null, nextNode = null) {
+    this.key = key;
+    this.value = value;
+    this.nextNode = nextNode;
+  }
+
+  setValue(value) {
+    this.value = value;
+  }
+}
 
 export default class LinkedList {
   constructor() {
@@ -7,8 +17,8 @@ export default class LinkedList {
     this.length = 0;
   }
 
-  append(value) {
-    const newNode = new Node(value, null);
+  append(key, value) {
+    const newNode = new Node(key, value, null);
     if (this.head == null) {
       this.head = newNode;
       this.tail = newNode;
@@ -19,8 +29,8 @@ export default class LinkedList {
     this.length++;
   }
 
-  prepend(value) {
-    const newNode = new Node(value, this.head);
+  prepend(key, value) {
+    const newNode = new Node(key, value, this.head);
     this.head = newNode;
 
     if (this.size() === 0) {
@@ -74,11 +84,11 @@ export default class LinkedList {
     this.length--;
   }
 
-  contains(value) {
+  contains(key) {
     let curr = this.head;
 
     while (curr !== null) {
-      if (curr.value == value) {
+      if (curr.key == key) {
         return true;
       }
       curr = curr.nextNode;
@@ -86,12 +96,12 @@ export default class LinkedList {
     return false;
   }
 
-  find(value) {
+  find(key) {
     let curr = this.head;
     let index = 0;
 
     while (curr !== null) {
-      if (curr.value === value) {
+      if (curr.key === key) {
         return index;
       }
       curr = curr.nextNode;
@@ -100,19 +110,19 @@ export default class LinkedList {
     return null;
   }
 
-  insertAt(value, index) {
+  insertAt(key, value, index) {
     if (index < 0 || index > this.size()) {
       return;
     }
 
     if (index === 0) {
-      this.prepend(value);
+      this.prepend(key, value);
     } else if (index === this.size()) {
-      this.append(value);
+      this.append(key, value);
     } else {
       let curr = this.head;
       let previous;
-      let newNode = new Node(value);
+      let newNode = new Node(key, value);
 
       for (let i = 0; i < index; i++) {
         previous = curr;
@@ -155,7 +165,7 @@ export default class LinkedList {
     let str = '';
 
     while (curr !== null) {
-      str += `( ${curr.value} ) -> `;
+      str += `( ${curr.key} ${curr.value} ) -> `;
       curr = curr.nextNode;
     }
     str += ' null';
